@@ -4,13 +4,7 @@
 ALGORITHM:
 
 1. Use recursion to swap each character with the current index.
-
-
-
 2. Fix one character at a time and recursively generate permutations of the rest.
-
-
-
 3. Use a backtracking technique by swapping characters back after the recursive call.
 
 PROGRAM:
@@ -46,5 +40,5 @@ public class StringPermutations {
 
 
 
-Time Complexity: O(n × n!)
+Time Complexity: O(n Ã— n!)
 Space Complexity: O(n)
