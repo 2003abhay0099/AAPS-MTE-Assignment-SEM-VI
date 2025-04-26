@@ -4,20 +4,10 @@
 ALGORITHM:
 
 1. Initialize two pointers: left = 0, right = n - 1.
-
-
-
 2. While left < right:
-
-
 - If nums[left] + nums[right] == target: return those numbers (or indices).
-- 
-
-If the sum is less than target then move left forward.
-
-
+- If the sum is less than target then move left forward.
 - If the sum is more than target then move right backward.
-
 
 PROGRAM:
 
