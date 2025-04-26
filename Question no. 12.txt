@@ -4,27 +4,14 @@
 ALGORITHM:
 
 1. Find the pivot:
+	- Traverse from the end and find the first index i such that nums[i] < nums[i + 1].
+	- If not found, reverse the whole array (it's the last permutation).
 
-	- 
-Traverse from the end and find the first index i such that nums[i] < nums[i + 1].
-	- 
-
-If not found, reverse the whole array (it's the last permutation).
-
-2. 
-
-Find the next bigger element to swap with nums[i]:
-
+2. Find the next bigger element to swap with nums[i]:
 	- Traverse from the end again and find the first j such that nums[j] > nums[i].
-
-
 	- Swap nums[i] and nums[j].
 
-
-
 3. Reverse the suffix:
-
-
 	- Reverse the subarray from i + 1 to the end.
 
 PROGRAM:
@@ -70,7 +57,5 @@ public class NextPermutation {
 }
 
 
-Time Complexity:
-O(n)
-Space Complexity:
-O(1)
+Time Complexity: O(n)
+Space Complexity: O(1)
