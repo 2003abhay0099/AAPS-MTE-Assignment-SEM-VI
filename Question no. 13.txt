@@ -4,28 +4,11 @@
 ALGORITHM:
 
 1. Create a dummy node to act as the start of the result list.
-
-2. 
-
-Use two pointers to traverse both lists.
-
-
-3. 
-Compare the current nodes from both lists:
-
-
+2. Use two pointers to traverse both lists.
+3. Compare the current nodes from both lists:
 	- Append the smaller node to the result.
-
-	- 
-Move the pointer forward in the list whose node was used.
-
-
-
+	- Move the pointer forward in the list whose node was used.
 4. After reaching the end of one list, append the remaining nodes of the other list.
-
-
-
-
 
 PROGRAM:
 
@@ -81,7 +64,5 @@ public class MergeSortedLists {
 }
 
 
-Time Complexity:
-O(n + m)
-Space Complexity:
-O(1)
+Time Complexity: O(n + m)
+Space Complexity: O(1)
