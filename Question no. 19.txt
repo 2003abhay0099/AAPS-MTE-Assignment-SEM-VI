@@ -1,0 +1,59 @@
+19.How to find the maximum product subarray. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Initialize three variables: maxSoFar = nums[0], maxEndingHere = nums[0], minEndingHere = nums[0].
+
+
+
+2. Iterate through the array from index 1:
+
+
+	- If current element is negative, swap maxEndingHere and minEndingHere.
+
+	- 
+Update maxEndingHere = max(current element, current element × maxEndingHere)
+
+	- 
+Update minEndingHere = min(current element, current element × minEndingHere)
+
+	- 
+Update maxSoFar = max(maxSoFar, maxEndingHere)
+
+
+3. 
+Return maxSoFar.
+
+
+
+PROGRAM:
+
+public class MaxProductSubarray {
+    public static int maxProduct(int[] nums) {
+        int maxSoFar = nums[0];
+        int maxEndingHere = nums[0];
+        int minEndingHere = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] < 0) {
+                int temp = maxEndingHere;
+                maxEndingHere = minEndingHere;
+                minEndingHere = temp;
+            }
+            maxEndingHere = Math.max(nums[i], nums[i] * maxEndingHere);
+            minEndingHere = Math.min(nums[i], nums[i] * minEndingHere);
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        }
+        return maxSoFar;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2, 3, -2, 4};
+        System.out.println(maxProduct(nums));
+    }
+}
+
+
+
+Time Complexity: O(n)
+Space Complexity: O(1)

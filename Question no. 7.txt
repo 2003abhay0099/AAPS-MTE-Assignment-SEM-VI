@@ -1,0 +1,66 @@
+7. Explain the sliding window technique and its use in string problems.
+
+
+Ans:-
+
+The Sliding Window Technique is a two-pointer approach commonly used to reduce the time complexity of algorithms dealing with contiguous data — like arrays or strings.
+
+
+Instead of checking every possible substring (which can be very slow), the idea is to:
+
+1. 
+
+Use a "window" (a range in the array/string) that can expand and contract.
+
+
+2. Move the window efficiently through the structure while maintaining a condition (like unique characters, fixed length, sum, etc.).
+
+
+
+How It Works
+:
+
+1.Start with two pointers (left and right) at the beginning.
+
+
+2.Expand right to include new elements.
+
+
+
+3. If the window violates the condition, shrink it from the left.
+
+
+4. 
+Update your result whenever the window meets your condition.
+
+
+
+Use in String Problems
+:
+
+Sliding Window is especially helpful when dealing with:
+
+1. Longest Substring Without Repeating Characters
+- Use a HashSet to track unique chars.
+- 
+
+Expand right, shrink left if there's a repeat.
+
+2. Find All Anagrams of a Pattern in a Text
+- Fixed-size window = pattern length.
+
+
+- Use frequency counts to compare sliding window with pattern.
+
+3. Minimum Window Substring
+
+- Find the smallest substring in s that contains all characters of t.
+- 
+
+Use character frequencies and expand/contract the window accordingly.
+
+
+Benefits:
+
+1. Efficient
+2. Easy to implement

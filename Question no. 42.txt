@@ -1,0 +1,73 @@
+42. Explain the concept of dynamic programming and its use in solving the maximum subarray problem.
+
+
+Ans:
+
+
+ - Dynamic Programming (DP) is a method for solving problems by breaking them down into smaller subproblems.
+
+- 
+It stores the results of these subproblems so that each subproblem is solved only once, avoiding repeated work.
+
+- 
+It is used when a problem has overlapping subproblems and optimal substructure.
+
+Key Features of Dynamic Programming:
+
+1. Overlapping Subproblems.
+2. Optimal Substructure.
+3. Memoization (Top-Down approach).
+4. Tabulation (Bottom-Up approach).
+
+
+Dynamic Programming is Used in the Maximum Subarray Problem:
+
+The Maximum Subarray Problem asks to find the largest sum of a contiguous subarray.
+
+
+
+- We can see that:
+
+
+        - To find the maximum subarray ending at position i,
+we can use the maximum subarray ending at position i-1.
+
+        - 
+So, we are solving similar subproblems again and again (overlapping subproblems).
+
+
+        - The result at i depends only on the result at i-1 (optimal substructure).
+
+
+
+Thus, Kadane’s Algorithm is a Dynamic Programming solution!
+
+
+PROGRAM:
+
+public class MaximumSubarrayDP {
+    public int maxSubArray(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n];
+        dp[0] = nums[0];
+        int maxSum = dp[0];
+        for (int i = 1; i < n; i++) {
+            if (dp[i - 1] + nums[i] > nums[i]) {
+                dp[i] = dp[i - 1] + nums[i];
+            } else {
+                dp[i] = nums[i];
+            }
+            if (dp[i] > maxSum) {
+                maxSum = dp[i];
+            }
+        }
+        return maxSum;
+    }
+
+    public static void main(String[] args) {
+        MaximumSubarrayDP obj = new MaximumSubarrayDP();
+        int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        int result = obj.maxSubArray(nums);
+        System.out.println(result);
+    }
+}

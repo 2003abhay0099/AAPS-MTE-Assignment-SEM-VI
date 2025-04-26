@@ -1,0 +1,81 @@
+23. How to find the maximum XOR of two numbers in an array. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Insert all numbers into a binary trie (bitwise representation).
+
+2. 
+
+For each number:
+
+
+          - Try to find the best possible number from the trie to get the maximum XOR.
+          - 
+
+For each bit from MSB to LSB, choose the opposite bit in the trie to maximize XOR.
+
+3. 
+
+Keep track of the maximum XOR seen.
+
+
+PROGRAM:
+
+import java.util.*;
+
+public class MaxXOR {
+    public static class TrieNode {
+        public TrieNode[] children = new TrieNode[2];
+    }
+
+    public static void insert(TrieNode root, int num) {
+        TrieNode node = root;
+        for (int i = 31; i >= 0; i--) {
+            int bit = (num >> i) & 1;
+            if (node.children[bit] == null) {
+                node.children[bit] = new TrieNode();
+            }
+            node = node.children[bit];
+        }
+    }
+
+    public static int findMaxXOR(TrieNode root, int num) {
+        TrieNode node = root;
+        int maxXor = 0;
+        for (int i = 31; i >= 0; i--) {
+            int bit = (num >> i) & 1;
+            int oppositeBit = 1 - bit;
+            if (node.children[oppositeBit] != null) {
+                maxXor |= (1 << i);
+                node = node.children[oppositeBit];
+            } else {
+                node = node.children[bit];
+            }
+        }
+        return maxXor;
+    }
+
+    public static int findMaximumXOR(int[] nums) {
+        TrieNode root = new TrieNode();
+        for (int num : nums) {
+            insert(root, num);
+        }
+        int max = 0;
+        for (int num : nums) {
+            max = Math.max(max, findMaxXOR(root, num));
+        }
+        return max;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {3, 10, 5, 25, 2, 8};
+        System.out.println(findMaximumXOR(nums));
+    }
+}
+
+
+Time Complexity: O(n)
+
+
+Space Complexity: O(n)

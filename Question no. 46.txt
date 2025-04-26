@@ -1,0 +1,66 @@
+46. Write a program to find the longest palindromic substring in a given string. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Initialize a variable to store the starting index and max length of the palindrome.
+
+
+
+2. For each character in the string:
+
+
+        - Expand around that character (odd-length palindrome).
+        - 
+
+Expand around that character and next one (even-length palindrome).
+        - 
+
+Update start and max length if a longer palindrome is found.
+
+
+
+3. Return the substring based on start and max length.
+
+
+
+PROGRAM:
+
+public class LongestPalindromicSubstring {
+    public String longestPalindrome(String s) {
+        if (s == null || s.length() == 0) {
+            return "";
+        }
+        int start = 0;
+        int maxLength = 1;
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = expandFromCenter(s, i, i);
+            int len2 = expandFromCenter(s, i, i + 1);
+            int len = Math.max(len1, len2);
+            if (len > maxLength) {
+                start = i - (len - 1) / 2;
+                maxLength = len;
+            }
+        }
+        return s.substring(start, start + maxLength);
+    }
+
+    public int expandFromCenter(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left = left - 1;
+            right = right + 1;
+        }
+        return right - left - 1;
+    }
+
+    public static void main(String[] args) {
+        LongestPalindromicSubstring obj = new LongestPalindromicSubstring();
+        String s = "babad";
+        String result = obj.longestPalindrome(s);
+        System.out.println(result);
+    }
+}
+
+
+Time Complexity: O(n^2)
+Space Complexity: O(1)

@@ -1,0 +1,49 @@
+21. How to count the number of 1s in the binary representation of numbers from 0 to n. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Create an array res of size n+1 to store the result.
+
+
+
+2. Initialize res[0] = 0.
+
+3. 
+
+For every i from 1 to n:
+
+
+          - Use the relation: 
+res[i] = res[i >> 1] + (i & 1)
+
+
+          - This means: the number of 1s in i = number of 1s in i / 2 + 1 (if i is odd)
+
+
+
+PROGRAM:
+
+public class CountBinaryOnes {
+    public static int[] countBits(int n) {
+        int[] res = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            res[i] = res[i >> 1] + (i & 1);
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        int[] result = countBits(n);
+        for (int i = 0; i <= n; i++) {
+            System.out.println("Number: " + i + ", 1s: " + result[i]);
+        }
+    }
+}
+
+
+Time Complexity: O(n)
+
+
+Space Complexity: O(n)

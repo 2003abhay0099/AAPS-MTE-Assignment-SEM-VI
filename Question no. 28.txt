@@ -1,0 +1,114 @@
+28. Implement two stacks in a single array. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Create an array of size n.
+
+
+
+2. Initialize two pointers:
+          - 
+
+top1 = -1 for Stack 1 (starts from beginning).
+          - 
+
+top2 = n for Stack 2 (starts from end).
+
+3. 
+
+For Stack 1:
+
+
+          - Push: increment top1 and insert.
+          - 
+
+Pop: remove element at top1 and decrement.
+
+4. 
+
+For Stack 2:
+          - 
+
+Push: decrement top2 and insert.
+          - 
+
+Pop: remove element at top2 and increment.
+
+
+
+5. Before pushing, ensure top1 < top2 - 1 (check for overflow).
+
+
+
+PROGRAM:
+
+class TwoStacks {
+    int size;
+    int top1, top2;
+    int[] arr;
+
+    TwoStacks(int n) {
+        size = n;
+        arr = new int[n];
+        top1 = -1;
+        top2 = n;
+    }
+
+    void push1(int x) {
+        if (top1 < top2 - 1) {
+            top1++;
+            arr[top1] = x;
+        }
+    }
+
+    void push2(int x) {
+        if (top1 < top2 - 1) {
+            top2--;
+            arr[top2] = x;
+        }
+    }
+
+    int pop1() {
+        if (top1 >= 0) {
+            int x = arr[top1];
+            top1--;
+            return x;
+        }
+        return -1;
+    }
+
+    int pop2() {
+        if (top2 < size) {
+            int x = arr[top2];
+            top2++;
+            return x;
+        }
+        return -1;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        TwoStacks ts = new TwoStacks(6);
+
+        ts.push1(10);
+        ts.push1(20);
+        ts.push1(30);
+
+        ts.push2(60);
+        ts.push2(50);
+        ts.push2(40);
+
+        System.out.println(ts.pop1()); 
+        System.out.println(ts.pop2()); 
+        System.out.println(ts.pop1()); 
+        System.out.println(ts.pop2()); 
+    }
+}
+
+
+Time Complexity: O(1)
+Space Complexity:
+
+O(n)

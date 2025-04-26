@@ -1,0 +1,31 @@
+50. Explain the concept of equilibrium index and its applications in array problems.
+
+
+Ans:
+
+An equilibrium index in an array is an index i where the sum of all the elements to the left of i is equal to the sum of all the elements to the right of i. In other words, if you have an array arr[], then the equilibrium index i satisfies the following condition:
+	- 
+sum(arr[0] to arr[i-1]) = sum(arr[i+1] to arr[n-1])
+
+
+Where:
+
+        - 
+arr[0] to arr[i-1] are the elements before the index i.
+
+
+        - arr[i+1] to arr[n-1] are the elements after the index i.
+
+
+
+If no such index exists, the result is no equilibrium index.
+
+
+
+
+Applications of Equilibrium Index:
+
+1. Load Balancing.
+2. Partition Problems.
+3. Optimization Problems.
+4. Dynamic Programming.

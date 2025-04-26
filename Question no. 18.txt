@@ -1,0 +1,87 @@
+18. Find the maximum XOR of two numbers in an array. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Convert each number to its binary representation.
+
+2. 
+
+Insert the number into the Trie, bit by bit.
+
+
+
+3. For each number:
+
+
+	- Check for the opposite bit in the Trie (to maximize XOR).
+
+
+	- Calculate the XOR with the current number and update the maximum XOR.
+
+4. 
+
+Return the maximum XOR value.
+
+
+
+
+
+PROGRAM:
+
+public class MaximumXOR {
+    static class TrieNode {
+        TrieNode[] children = new TrieNode[2];
+    }
+
+    static class Trie {
+        TrieNode root = new TrieNode();
+
+        public void insert(int num) {
+            TrieNode node = root;
+            for (int i = 31; i >= 0; i--) {
+                int bit = (num >> i) & 1;
+                if (node.children[bit] == null) {
+                    node.children[bit] = new TrieNode();
+                }
+                node = node.children[bit];
+            }
+        }
+
+        public int findMaxXOR(int num) {
+            TrieNode node = root;
+            int maxXor = 0;
+            for (int i = 31; i >= 0; i--) {
+                int bit = (num >> i) & 1;
+                int oppositeBit = bit == 0 ? 1 : 0;
+                if (node.children[oppositeBit] != null) {
+                    maxXor |= (1 << i);
+                    node = node.children[oppositeBit];
+                } else {
+                    node = node.children[bit];
+                }
+            }
+            return maxXor;
+        }
+    }
+
+    public static int findMaximumXOR(int[] nums) {
+        Trie trie = new Trie();
+        int maxXor = 0;
+        for (int num : nums) {
+            trie.insert(num);
+        }
+        for (int num : nums) {
+            maxXor = Math.max(maxXor, trie.findMaxXOR(num));
+        }
+        return maxXor;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {3, 10, 5, 25, 2, 8};
+        System.out.println(findMaximumXOR(nums));
+    }
+}
+
+Time Complexity: O(n * b)
+Space Complexity: O(n * b)

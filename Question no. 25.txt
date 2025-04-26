@@ -1,0 +1,65 @@
+25. Solve the problem of finding the next greater element for each element in an array. Write its algorithm, program. Find its time and space complexities. Explain with
+suitable example.
+
+
+ALGORITHM:
+
+1. Traverse the array from right to left.
+
+
+
+2. Use a stack to keep track of potential next greater elements.
+
+
+
+3. For each element:
+
+
+          - Pop elements from the stack until you find a greater one.
+
+
+          - If the stack is empty, the next greater element is -1.
+
+
+          - Otherwise, the top of the stack is the next greater element.
+          - 
+
+Push the current element onto the stack.
+
+
+
+PROGRAM:
+
+import java.util.*;
+
+public class NextGreaterElement {
+    public static int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int[] res = new int[n];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && stack.peek() <= nums[i]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                res[i] = -1;
+            } else {
+                res[i] = stack.peek();
+            }
+            stack.push(nums[i]);
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {4, 5, 2, 10, 8};
+        int[] result = nextGreaterElements(nums);
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + " ");
+        }
+    }
+}
+
+
+Time Complexity: O(n)
+Space Complexity: O(n)

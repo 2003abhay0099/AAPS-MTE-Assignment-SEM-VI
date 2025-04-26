@@ -1,0 +1,59 @@
+16. Find the majority element in an array that appears more than n/2 times. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+2/3
+
+
+ALGORITHM:
+
+1. Initialize count = 0 and candidate = 0
+
+
+
+2. Loop through array:
+
+
+	- If count == 0, set candidate = current element
+
+	- If element == candidate, increment count
+	-
+
+Else, decrement count
+
+
+
+3. Return candidate
+
+
+PROGRAM:
+
+public class MajorityElement {
+    public static int findMajorityElement(int[] nums) {
+        int count = 0;
+        int candidate = 0;
+
+        for(int i = 0; i < nums.length; i++) {
+            if(count == 0) {
+                candidate = nums[i];
+                count = 1;
+            } else {
+                if(nums[i] == candidate) {
+                    count++;
+                } else {
+                    count--;
+                }
+            }
+        }
+
+        return candidate;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2, 2, 1, 1, 1, 2, 2};
+        System.out.println(findMajorityElement(nums));
+    }
+}
+
+
+Time Complexity:
+O(n)
+Space Complexity:
+O(1)

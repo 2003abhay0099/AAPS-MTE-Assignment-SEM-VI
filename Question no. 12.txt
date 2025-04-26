@@ -1,0 +1,76 @@
+12. Rearrange numbers into the lexicographically next greater permutation. Write its algorithm, program. Find its time and space complexities. Explain with suitable example. 
+
+
+ALGORITHM:
+
+1. Find the pivot:
+
+	- 
+Traverse from the end and find the first index i such that nums[i] < nums[i + 1].
+	- 
+
+If not found, reverse the whole array (it's the last permutation).
+
+2. 
+
+Find the next bigger element to swap with nums[i]:
+
+	- Traverse from the end again and find the first j such that nums[j] > nums[i].
+
+
+	- Swap nums[i] and nums[j].
+
+
+
+3. Reverse the suffix:
+
+
+	- Reverse the subarray from i + 1 to the end.
+
+PROGRAM:
+
+import java.util.Arrays;
+
+public class NextPermutation {
+    public static void nextPermutation(int[] nums) {
+        int n = nums.length;
+        int i = n - 2;
+        while(i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
+        }
+        if(i >= 0) {
+            int j = n - 1;
+            while(nums[j] <= nums[i]) {
+                j--;
+            }
+            swap(nums, i, j);
+        }
+        reverse(nums, i + 1, n - 1);
+    }
+
+    public static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    public static void reverse(int[] nums, int start, int end) {
+        while(start < end) {
+            swap(nums, start, end);
+            start++;
+            end--;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1,2,3};
+        nextPermutation(nums);
+        System.out.println(Arrays.toString(nums));
+    }
+}
+
+
+Time Complexity:
+O(n)
+Space Complexity:
+O(1)

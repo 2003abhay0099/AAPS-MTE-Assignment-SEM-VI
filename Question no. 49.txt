@@ -1,0 +1,93 @@
+49. How to find the intersection of two linked lists. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+
+ALGORITHM:
+
+1. Find the lengths of both linked lists.
+
+
+
+2. Adjust the pointers of the longer linked list by moving it forward so that both linked lists are of the same length.
+
+
+
+3. Traverse both linked lists together, comparing nodes one by one. The first node that matches is the intersection point.
+
+
+
+4. If no node matches, return null.
+
+
+PROGRAM:
+
+public class IntersectionOfLinkedLists {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int lenA = getLength(headA);
+        int lenB = getLength(headB);
+
+        while (lenA > lenB) {
+            headA = headA.next;
+            lenA--;
+        }
+
+        while (lenB > lenA) {
+            headB = headB.next;
+            lenB--;
+        }
+
+        while (headA != null && headB != null) {
+            if (headA == headB) {
+                return headA;
+            }
+            headA = headA.next;
+            headB = headB.next;
+        }
+
+        return null;
+    }
+
+    public int getLength(ListNode head) {
+        int length = 0;
+        while (head != null) {
+            length++;
+            head = head.next;
+        }
+        return length;
+    }
+
+    public static void main(String[] args) {
+        IntersectionOfLinkedLists obj = new IntersectionOfLinkedLists();
+        ListNode headA = new ListNode(4);
+        headA.next = new ListNode(1);
+        ListNode intersectNode = new ListNode(8);
+        headA.next.next = intersectNode;
+        intersectNode.next = new ListNode(4);
+        intersectNode.next.next = new ListNode(5);
+
+        ListNode headB = new ListNode(5);
+        headB.next = new ListNode(0);
+        headB.next.next = new ListNode(1);
+        headB.next.next.next = intersectNode;
+
+        ListNode result = obj.getIntersectionNode(headA, headB);
+        if (result != null) {
+            System.out.println(result.val);
+        } else {
+            System.out.println("No intersection");
+        }
+    }
+}
+
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) {
+        val = x;
+        next = null;
+    }
+}
+
+
+Time complexity: O(n + m)
+Space complexity: O(1)

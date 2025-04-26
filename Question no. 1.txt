@@ -1,0 +1,48 @@
+1. Explain the concept of a prefix sum array and its applications.
+
+Ans:-
+
+A prefix sum array is an auxiliary array used to store the cumulative sum of elements of the original array. It helps in answering range sum queries efficiently.
+
+
+
+Let’s say we have an array arr[] of size n, the prefix sum array prefixSum[] is built as:
+
+
+
+prefixSum[0] = arr[0];
+for (int i = 1; i < n; i++) {
+    prefixSum[i] = prefixSum[i-1] + arr[i];
+}
+
+Example:
+
+
+Given: arr = [2, 4, 1, 3, 6]
+
+
+Then the prefix sum array becomes:
+
+prefixSum = [2, 6, 7, 10, 16]
+
+
+
+To find the sum of elements from index 1 to 3:
+
+
+sum = prefixSum[3] - prefixSum[0] = 10 - 2 = 8
+
+
+
+Applications:
+
+
+a. Range sum queries
+
+b. 
+Subarray sum detection
+
+c. 
+
+Optimization in DP
+

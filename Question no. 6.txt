@@ -1,0 +1,82 @@
+6. Find the length of the longest substring without repeating characters. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Use two pointers: left and right to maintain a sliding window.
+
+2. 
+
+Use a HashSet to store characters in the current window.
+
+
+
+3. Move right pointer one character at a time.
+
+
+If the character is not in the set, add it, update max length.
+
+If the character is already in the set, remove s.charAt(left) from the set and move left forward.
+
+
+
+4. Repeat until right reaches the end of the string.
+
+
+
+PROGRAM: 
+
+import java.util.HashSet;
+
+public class LongestSubstring {
+    public static int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int maxLen = 0;
+        int left = 0;
+        HashSet<Character> set = new HashSet<>();
+
+        for (int right = 0; right < n; right++) {
+            while (set.contains(s.charAt(right))) {
+                set.remove(s.charAt(left));
+                left++;
+            }
+            set.add(s.charAt(right));
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+
+        return maxLen;
+    }
+
+    public static void main(String[] args) {
+        String s = "abcabcbb";
+        int result = lengthOfLongestSubstring(s);
+        System.out.println("Length of longest substring without repeating characters: " + result);
+    }
+}
+
+
+Time complexity: O(n)
+Space complexity: O(min(n,m))
+
+
+Example:
+
+
+Input: "abcabcbb"
+
+
+Explanation:
+
+
+abc = length 3
+
+
+Repeats a, window slides: bca = still unique
+
+
+Then cab, abc again
+
+
+But abc is max without repeat
+
+Output: 3

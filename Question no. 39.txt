@@ -1,0 +1,69 @@
+39. Explain the difference between subsets and permutations with examples.
+
+
+Ans:
+
+SUBSETS:
+        - 
+A subset is any selection of elements from a set, where the order does not matter.
+        - 
+
+A subset can be empty, or it can contain some or all elements.
+
+
+        - For a set of size n, there are 2^n possible subsets.
+
+Example:
+
+	If the set is {1, 2, 3}, then the subsets are:
+	- 
+{}, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}
+
+
+Here, {1,2} is the same as {2,1} because order does not matter.
+
+
+Applications:
+
+        - Used in combination problems.
+
+
+        - Used in finding all possible selections.
+        - 
+
+Used in solving the knapsack problem, subsets sum problem, etc.
+
+
+
+
+PERMUTATION:
+        - A permutation is an arrangement of all or some elements where the order matters.
+
+        - 
+A permutation usually includes all elements arranged in different possible orders.
+
+
+        - For a set of size n, there are n! (n factorial) permutations.
+
+
+
+Example:
+	
+If the set is {1, 2, 3}, then the permutations are:
+	- 
+[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1]
+
+
+Here, [1,2] and [2,1] are considered different because the order matters.
+
+
+
+Applications:
+
+        - Used in ordering problems.
+
+
+        - Used in arranging people, seats, or numbers.
+
+
+        - Used in scheduling, password generation, etc.

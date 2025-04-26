@@ -1,0 +1,74 @@
+34. Solve the problem of finding the subarray sum equal to K using hashing. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Initialize:
+      - 
+
+A hash map (hashMap) to store the cumulative sum up to each index.
+      - 
+
+A variable sum to keep track of the cumulative sum as we iterate through the array.
+      - 
+
+The result is true if any cumulative sum up to index i satisfies the condition.
+
+2. 
+
+Iterate through the array:
+
+
+      - For each element arr[i], update the sum as the cumulative sum.
+
+
+      - Check if sum - K exists in the hash map:
+
+
+	- If it exists, it means there is a subarray that sums to K, because sum - (sum - K) = K.
+      - 
+
+Otherwise, add the current sum to the hash map, recording its occurrence
+
+3. .
+
+Return the result:
+
+
+      - If any such subarray exists, return true; otherwise, return false.
+
+
+PROGRAM:
+
+import java.util.HashMap;
+
+public class SubarraySumEqualsK {
+    public boolean subarraySum(int[] nums, int k) {
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        int sum = 0;
+        hashMap.put(0, 1);
+
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            if (hashMap.containsKey(sum - k)) {
+                return true;
+            }
+            hashMap.put(sum, hashMap.getOrDefault(sum, 0) + 1);
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        SubarraySumEqualsK obj = new SubarraySumEqualsK();
+        int[] nums = {23, 2, 4, 6, 7};
+        int k = 6;
+        boolean result = obj.subarraySum(nums, k);
+        System.out.println(result);
+    }
+}
+
+
+
+Time Complexity: O(n)
+Space Complexity: O(n)

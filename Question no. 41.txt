@@ -1,0 +1,60 @@
+41. Write a program to find the maximum subarray sum using Kadane’s algorithm.
+
+
+ALGORITHM(Kadane's Algorithm):
+
+1. 
+Initialize two variables:
+
+
+        - maxSoFar = first element
+        - 
+
+maxEndingHere = first element
+
+2. 
+
+Traverse the array starting from index 1:
+        - 
+
+Update maxEndingHere to be the maximum of the current element or maxEndingHere + current element.
+
+
+        - Update maxSoFar if maxEndingHere is greater.
+
+
+
+3. Return maxSoFar.
+
+
+
+PROGRAM:
+
+public class MaximumSubarraySum {
+    public int maxSubArray(int[] nums) {
+        int maxSoFar = nums[0];
+        int maxEndingHere = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (maxEndingHere + nums[i] > nums[i]) {
+                maxEndingHere = maxEndingHere + nums[i];
+            } else {
+                maxEndingHere = nums[i];
+            }
+            if (maxEndingHere > maxSoFar) {
+                maxSoFar = maxEndingHere;
+            }
+        }
+        return maxSoFar;
+    }
+
+    public static void main(String[] args) {
+        MaximumSubarraySum obj = new MaximumSubarraySum();
+        int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        int result = obj.maxSubArray(nums);
+        System.out.println(result);
+    }
+}
+
+
+Time Complexity: O(n)
+Space Complexity: O(1)

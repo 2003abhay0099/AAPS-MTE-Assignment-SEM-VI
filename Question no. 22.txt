@@ -1,0 +1,39 @@
+22. How to check if a number is a power of two using bit manipulation. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. A number n is a power of two if:
+
+
+          - n > 0 and
+
+
+          - n & (n - 1) == 0
+
+
+
+2. Reason: Powers of two have only one 1 in binary.
+Subtracting 1 flips all bits after the rightmost 1 (including it).
+So, n & (n - 1) will be zero only if there's exactly one 1.
+
+
+PROGRAM:
+
+public class PowerOfTwoCheck {
+    public static boolean isPowerOfTwo(int n) {
+        return n > 0 && (n & (n - 1)) == 0;
+    }
+
+    public static void main(String[] args) {
+        int n = 16;
+        System.out.println(isPowerOfTwo(n));
+    }
+}
+
+
+Time Complexity: O(1)
+
+
+Space Complexity: O(1)
+

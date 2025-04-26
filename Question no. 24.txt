@@ -1,0 +1,35 @@
+24. Explain the concept of bit manipulation and its advantages in algorithm design.
+
+Ans: 
+	Bit manipulation refers to using bitwise operators to directly interact with individual bits of data (typically integers). These operations involve logic at the binary (0/1) level and include:
+- 
+
+& (AND)
+
+- 
+| (OR)
+
+- 
+^ (XOR)
+
+- 
+~ (NOT)
+
+- 
+<< (left shift)
+
+- 
+>> (right shift)
+
+
+
+Each bitwise operation is extremely fast and often runs in constant time, making them very useful in algorithm design.
+
+
+
+Advantages in Algorithm Design:
+
+1. Efficiency
+2. Compactness
+3. Low-level control
+4. Memory optimization

@@ -1,0 +1,20 @@
+45. Explain the concept of priority queues and their applications in algorithm design.
+
+Ans:
+
+A Priority Queue is a special type of queue where each element has a priority.
+Elements are served based on their priority, not on the order they arrived (unlike a normal queue).
+
+
+        - Higher priority elements are dequeued before lower priority elements.
+
+        - 
+If two elements have the same priority, they are dequeued based on the order they were inserted.
+
+
+Applications of Priority Queues in Algorithm Design:
+
+1. Dijkstra’s Algorithm
+2. Huffman Encoding
+3. Scheduling Problems
+4. Load Balancing:

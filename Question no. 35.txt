@@ -1,0 +1,66 @@
+35. Find the k-most frequent elements in an array using a priority queue. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Count Frequency: First, use a hash map (frequencyMap) to count the frequency of each element in the array.
+
+
+
+2. Use Priority Queue: Create a priority queue (min-heap) to store elements along with their frequencies.
+
+
+      - If the size of the heap exceeds k, remove the element with the lowest frequency.
+
+3. 
+
+Return the Result: After processing all the elements, the heap will contain the k most frequent elements.
+
+
+PROGRAM:
+
+import java.util.*;
+
+public class KMostFrequentElements {
+    public List<Integer> kMostFrequent(int[] nums, int k) {
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            frequencyMap.put(nums[i], frequencyMap.getOrDefault(nums[i], 0) + 1);
+        }
+
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>(
+            (a, b) -> a.getValue() - b.getValue()
+        );
+
+        for (Iterator<Map.Entry<Integer, Integer>> it = frequencyMap.entrySet().iterator(); it.hasNext();) {
+            Map.Entry<Integer, Integer> entry = it.next();
+            minHeap.offer(entry);
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        while (!minHeap.isEmpty()) {
+            result.add(minHeap.poll().getKey());
+        }
+
+        Collections.reverse(result);
+        return result;
+    }
+
+    public static void main(String[] args) {
+        KMostFrequentElements obj = new KMostFrequentElements();
+        int[] nums = {1, 1, 1, 2, 2, 3};
+        int k = 2;
+        List<Integer> result = obj.kMostFrequent(nums, k);
+        System.out.println(result);
+    }
+}
+
+
+Time Complexity:
+
+ O(n log k)
+Space Complexity: O(n + k)

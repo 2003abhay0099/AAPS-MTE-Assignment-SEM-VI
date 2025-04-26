@@ -1,0 +1,62 @@
+27. Find the node where two singly linked lists intersect. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Initialize two pointers, a and b, to the heads of the two lists.
+
+
+
+2. Traverse both lists simultaneously.
+
+
+
+3. When either pointer reaches the end, redirect it to the head of the other list.
+
+
+
+4. If the lists intersect, the pointers will meet at the intersection node.
+
+
+
+5. If not, both will become null at the end.
+
+
+PROGRAM:
+
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) {
+        val = x;
+        next = null;
+    }
+}
+
+public class IntersectionFinder {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode a = headA;
+        ListNode b = headB;
+        
+        while (a != b) {
+    if (a == null) {
+        a = headB;
+    } 
+      else {
+        a = a.next;
+    }
+
+    if (b == null) {
+        b = headA;
+    } 
+      else {
+        b = b.next;
+    }
+}
+        return a;
+    }
+}
+
+
+Time Complexity: O(m + n) 
+Space Complexity: O(1)

@@ -1,0 +1,79 @@
+32. How to find the largest rectangle that can be formed in a histogram. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Initialize an empty stack to store indices of histogram bars.
+
+
+
+2. Traverse each bar:
+
+
+       - While the stack is not empty and current bar height is less than the height of bar at stack top:
+          - 
+
+Pop the top index and calculate area with height at that index.
+
+
+          - Width = distance between current index and index after popped element (or 0 if stack is empty).
+
+
+      - Push the current index into the stack.
+
+
+
+3. After the loop, process any remaining bars in the stack similarly.
+
+
+
+
+
+PROGRAM:
+
+import java.util.*;
+
+public class LargestRectangleHistogram {
+    public int largestRectangleArea(int[] heights) {
+        Stack<Integer> stack = new Stack<>();
+        int maxArea = 0;
+        int n = heights.length;
+
+        for (int i = 0; i <= n; i++) {
+            int h;
+            if (i == n) {
+                h = 0;
+            } else {
+                h = heights[i];
+            }
+
+            while (!stack.isEmpty() && h < heights[stack.peek()]) {
+                int height = heights[stack.pop()];
+                int width;
+                if (stack.isEmpty()) {
+                    width = i;
+                } else {
+                    width = i - stack.peek() - 1;
+                }
+                int area = height * width;
+                if (area > maxArea) {
+                    maxArea = area;
+                }
+            }
+            stack.push(i);
+        }
+
+        return maxArea;
+    }
+
+    public static void main(String[] args) {
+        LargestRectangleHistogram obj = new LargestRectangleHistogram();
+        int[] heights = {2, 1, 5, 6, 2, 3};
+        int result = obj.largestRectangleArea(heights);
+        System.out.println(result);
+    }
+}
+
+
+Time Complexity: O(n)
+Space Complexity: O(n)

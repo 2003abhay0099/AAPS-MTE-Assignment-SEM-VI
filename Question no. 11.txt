@@ -1,0 +1,58 @@
+11. Find two numbers in a sorted array that add up to a target. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Initialize two pointers: left = 0, right = n - 1.
+
+
+
+2. While left < right:
+
+
+- If nums[left] + nums[right] == target: return those numbers (or indices).
+- 
+
+If the sum is less than target then move left forward.
+
+
+- If the sum is more than target then move right backward.
+
+
+PROGRAM:
+
+public class TwoSumSorted {
+    public static int[] findTwoSum(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+
+            if (sum == target) {
+                return new int[]{nums[left], nums[right]}; 
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return new int[]{-1, -1}; 
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3, 4, 6, 8, 11};
+        int target = 10;
+        int[] result = findTwoSum(nums, target);
+
+        if (result[0] != -1) {
+            System.out.println("Pair found: " + result[0] + " + " + result[1] + " = " + target);
+        } else {
+            System.out.println("No pair found.");
+        }
+    }
+}
+
+
+Time Complexity: O(n)
+Space Complexity: O(1)

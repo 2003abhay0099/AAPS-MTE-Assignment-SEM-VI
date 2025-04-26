@@ -1,0 +1,68 @@
+31. Use a deque to find the maximum in every sliding window of size K. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Use a deque to store indices of useful elements in the current window.
+
+
+
+2. For each element in the array:
+
+
+          - Remove indices from the back if the current element is greater (maintain decreasing order).
+
+
+          - Add current index to the deque.
+
+
+          - Remove indices from the front if they’re out of the current window.
+
+
+          - The front of the deque always has the index of the max element for the window.
+
+
+
+3. After the first k-1 elements, start adding the max to the result for every window.
+
+
+PROGRAM:
+
+import java.util.*;
+
+public class SlidingWindowMaximum {
+    public List<Integer> maxSlidingWindow(int[] nums, int k) {
+        List<Integer> result = new ArrayList<>();
+        Deque<Integer> deque = new ArrayDeque<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            while (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {
+                deque.pollLast();
+            }
+
+            deque.offerLast(i);
+
+            if (deque.peekFirst() <= i - k) {
+                deque.pollFirst();
+            }
+
+            if (i >= k - 1) {
+                result.add(nums[deque.peekFirst()]);
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        SlidingWindowMaximum obj = new SlidingWindowMaximum();
+        int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
+        int k = 3;
+        List<Integer> output = obj.maxSlidingWindow(nums, k);
+        System.out.println(output); 
+    }
+}
+
+
+Time Complexity: O(n)
+Space Complexity: O(k)

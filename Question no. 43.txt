@@ -1,0 +1,70 @@
+43. Solve the problem of finding the top K frequent elements in an array. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+
+
+ALGORITHM:
+
+1. Count the frequency of every element using a frequency map.
+
+
+
+2. For k times:
+
+
+        - Find the element with the highest frequency manually by iterating the map.
+        - 
+
+Add that element to the result.
+
+
+        - Remove that element from the map (so it is not picked again).
+
+
+
+
+
+PROGRAM:
+
+import java.util.*;
+
+public class TopKFrequentElementsBruteForce {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (frequencyMap.containsKey(nums[i])) {
+                frequencyMap.put(nums[i], frequencyMap.get(nums[i]) + 1);
+            } else {
+                frequencyMap.put(nums[i], 1);
+            }
+        }
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            int maxKey = 0;
+            int maxFreq = -1;
+            for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+                if (entry.getValue() > maxFreq) {
+                    maxFreq = entry.getValue();
+                    maxKey = entry.getKey();
+                }
+            }
+            result[i] = maxKey;
+            frequencyMap.remove(maxKey);
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        TopKFrequentElementsBruteForce obj = new TopKFrequentElementsBruteForce();
+        int[] nums = {1, 1, 1, 2, 2, 3};
+        int k = 2;
+        int[] result = obj.topKFrequent(nums, k);
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + " ");
+        }
+    }
+}
+
+
+Time Complexity: O(k*n)
+Space Complexity:
+
+ O(n)

@@ -1,0 +1,22 @@
+33. Explain the sliding window technique and its applications in array problems.
+
+Ans:
+
+The sliding window technique is a dynamic approach used to solve problems that involve finding a subset (subarray or substring) of elements from an array or string. The key idea is to maintain a window of fixed or variable size as it slides across the array, updating the result incrementally as it moves. It is often used in problems where you need to calculate or keep track of certain properties of a subarray or substring.
+
+
+
+Applications of the Sliding Window Technique in Array Problems:
+
+
+1. Maximum/Minimum Sum Subarray of Size k.
+
+2. Find Maximum/Minimum Element in Every Subarray of Size k.
+
+3. 
+
+Longest Substring Without Repeating Characters. 
+
+4. Subarray with Given Sum.
+
+5. String Matching and Pattern Search:
